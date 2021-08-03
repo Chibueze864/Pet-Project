@@ -1,0 +1,161 @@
+﻿function setPageHeight() {
+    var windowHeight = $(window).height();
+    var pageHeight = $('#page').height();
+    var headerHeight = $('#header').height();
+    if (windowHeight > pageHeight + headerHeight + 1)
+        $('#page').height(windowHeight - headerHeight - 1);
+
+    $('.top-header').each(function () {
+        $('#page').addClass('top-header-found');
+    });
+
+    if ($('#page').hasClass('showMobileMenu')) hideMobileMenu();
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEq = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') 
+            c = c.substring(1, c.length);
+        if (c.indexOf(nameEq) == 0) 
+            return c.substring(nameEq.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999;';
+}
+
+function cookieConsent() {
+    setCookie('cookieConsent', 'Agreed on ' + (new Date()), 365);
+    $('#cookieConsent').hide();
+}
+
+hideMobileMenu = function() {
+    $('#mobileMenu').css('z-index', -1);
+    $('#page').removeClass('showMobileMenu');
+    $('#header').removeClass('showMobileMenu');
+    $('.top-header').removeClass('showMobileMenu');
+    $('#mobileMenu').removeClass('showMobileMenu');
+    setTimeout(function() {
+            $('#mobileMenu').css('display', 'none');
+        },
+        300);
+};
+
+$(function() {
+    // jQuery document ready function
+
+    setPageHeight();
+    $(window).on('resize', setPageHeight);
+    $(document).on('scroll',
+        function() {
+            $('.subMenu').removeClass('visibleSubMenu');
+            if ($(document).scrollTop() > 100) {
+                $('#header').removeClass('headerLarge').addClass('headerSmall');
+                $('.top-header').addClass('scrolled');
+            } else {
+                $('#header').removeClass('headerSmall').addClass('headerLarge');
+                $('.top-header').removeClass('scrolled');
+            }
+            setPageHeight();
+        });
+    $('#header').on('click',
+        function() {
+            $('.subMenu').removeClass('visibleSubMenu');
+        });
+    $('#menu>ul>li').on('mouseenter',
+        function() {
+            $('.subMenu').removeClass('visibleSubMenu');
+            $(this).find('.subMenu').addClass('visibleSubMenu');
+        });
+    $('#main').on('mouseenter',
+        function() {
+            $('.subMenu').removeClass('visibleSubMenu');
+        });
+    $('#mobileMenuIcon').on('click',
+        function() {
+            if (!$('#page').hasClass('showMobileMenu')) {
+                $('#page').addClass('showMobileMenu');
+                $('#header').addClass('showMobileMenu');
+                $('.top-header').addClass('showMobileMenu');
+                $('#mobileMenu').addClass('showMobileMenu');
+                $('#mobileMenu').css('display', 'block');
+                setTimeout(function() {
+                        $('#mobileMenu').css('z-index', 100);
+                    },
+                    300);
+            } else {
+                hideMobileMenu();
+            }
+        });
+
+    // Hooking up all possible "modern input" text entry controls. (If none are present, this does not hurt)
+    var $modernInputs = $('.modern-input input, .modern-input textarea');
+    $modernInputs.focusin(function(e) {
+        var $wrapper = $(e.srcElement).parent('.modern-input');
+        $wrapper.addClass('modern-input-has-focus');
+    });
+    $modernInputs.blur(function(e) {
+        var $wrapper = $(e.srcElement).parent('.modern-input');
+        $wrapper.removeClass('modern-input-has-focus');
+    });
+    $modernInputs.change(function(e) {
+        var element = $(e.srcElement);
+        if (typeof element.srcElement == 'undefined') element = $(e.currentTarget);
+        var wrapper = $(element).parent('.modern-input');
+        var hasValue = element.val() != '';
+        if (hasValue) {
+            wrapper.addClass('modern-input-has-content');
+        }
+        else{
+            wrapper.removeClass('modern-input-has-content');
+        }
+    });
+    $modernInputs.each(function(i, element) {
+        var hasValue = $(element).val() != '';
+        if (element.nodeName == 'SELECT') hasValue = true;
+        else if ($(element).attr('type') == 'file') hasValue = true;
+        var wrapper = $(element).parent('.modern-input');
+        if (hasValue) {
+            wrapper.addClass('modern-input-has-content');
+        }
+        else{
+            wrapper.removeClass('modern-input-has-content');
+        }
+    });
+
+    // Hooking up all the modern-input select (drop-down) controls
+    var $modernInputSelects = $('.modern-input select');
+    $modernInputSelects.each(function(i, element) {
+        var wrapper = $(element).parent('.modern-input');
+        wrapper.addClass('modern-input-has-content');
+    });
+    $modernInputSelects.focusin(function(e) {
+        var $wrapper = $(e.srcElement).parent('.modern-input');
+        $wrapper.addClass('modern-input-has-focus');
+    });
+    $modernInputSelects.blur(function(e) {
+        var $wrapper = $(e.srcElement).parent('.modern-input');
+        $wrapper.removeClass('modern-input-has-focus');
+    });
+
+    var consentCookie = getCookie('cookieConsent');
+    if (consentCookie == null) {
+        // We must show the cookie consent message
+        $('#cookieConsent').show();
+    }
+});

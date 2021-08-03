@@ -1,0 +1,84 @@
+﻿/******************************************************************
+*  Address                                                        *
+******************************************************************/
+
+.copyright {
+    font-size: 1.15em;
+}
+.privacyPolicyFooter {
+    font-size: 1em;
+}
+.adr {
+}
+.street-address {
+    display: inline;
+}
+.street-address:after {
+    content: " -";
+}
+.extended-address {
+    display: inline;
+}
+.extended-address:after {
+    content: " -";
+}
+.locality {
+    display: inline;
+}
+.locality:after {
+    content: " -";
+}
+.region {
+    display: inline;
+}
+.postal-code {
+    display: inline;
+}
+.postal-code:after {
+    content: " -";
+}
+.country-name {
+    display: inline;
+}
+
+/* Special combinations */
+
+.street-address, .extended-address, .locality, .region, .postal-code, .country-name {
+}
+.street-address:after, .extended-address:after, .postal-code:after {
+}
+.locality:after {
+}
+
+/******************************************************************
+*  hCard/vCard (Phone/Fax)                                        *
+******************************************************************/
+
+.vcard /* vCard */ {
+}
+.tel {
+    display: inline;
+}
+.email {
+    display: inline;
+}
+.type /* Type of phone */ {
+    display: inline;
+}
+.type:after {
+    content: ": ";
+}
+.value /* Actual number */ {
+    display: inline;
+}
+.value:after {
+    content: " -";
+}
+
+/* Special combinations */
+.tel .type, .tel .value {
+}
+.email .type, .email .value {
+}
+.tel .type:after {
+}

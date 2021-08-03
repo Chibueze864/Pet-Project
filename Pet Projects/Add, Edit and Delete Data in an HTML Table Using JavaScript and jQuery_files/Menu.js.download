@@ -1,0 +1,11 @@
+﻿toggleMobileSubMenu = function (id, element) {
+    var $element = $(element);
+    if (!$element.hasClass('subMenuExpanded')) {
+        $('#' + id).show(200);
+        $element.addClass('subMenuExpanded');
+    }
+    else {
+        $('#' + id).hide(200);
+        $element.removeClass('subMenuExpanded');
+    }
+};

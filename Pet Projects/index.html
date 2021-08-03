@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="styles.css" rel="stylesheet"/>
+        <script src="test.js"></script>
+        <title>JavaScript To-Do List</title>
+
+    </head>
+
+    <body>
+        <div id="outer" style = "margin-top: 2%; border: 1px solid black;" >
+            <div id="title"> 
+                <h1 style="text-align: center;">To-Do list App</h1>
+                 
+                        <input placeholder="Enter here" type="text" id="input" style="zoom: 2.0;" name="input"  ><br>
+                       <input type="submit" value="Add to list" onClick = "addItem()" class="myButton" > 
+
+            </div>
+            <div id="my-div">
+                <div id="for-item">
+                    <button class="otherButton" id="remove" onclick="remove();">Remove</button>
+                </div>
+                <div id="for-button">
+
+
+                </div>
+
+            </div>
+            
+            
+            <h3>You have <span id="count">0</span> items remaining</h3>
+
+
+
+        </div>         
+
+   
+        
+    </body>
+
+
+
+
+</html>

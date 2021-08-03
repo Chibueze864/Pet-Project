@@ -1,0 +1,79 @@
+﻿// This is the standard header ad tag DoubleClick expects to add
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function () {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+    '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+})();
+
+// This method actually displays an ad within a div tag
+function DisplaySelfRefreshingDoubleClickAd(elementSet, adName, allowableSizes, headerText, insertionMode, mainDivClass) {
+    if (elementSet == undefined) return;
+    if (elementSet.length == 0) return;
+    if (elementSet.length > 1) {
+        elementSet = $(elementSet[0]);
+        //console.log('The provided element set must not have a length > 1 to add ads after it!');
+    }
+
+    var height = 0;
+    var width = 0;
+    if (allowableSizes.length == 2 && allowableSizes[0].length == undefined) {
+        // This is not an array of arrays. It is just a single width/height pair
+        width = allowableSizes[0];
+        height = allowableSizes[1];
+    }
+    else {
+        for (var counter = 0; counter < allowableSizes.length; counter++) {
+            if (allowableSizes[counter][0] > width) width = allowableSizes[counter][0];
+            if (allowableSizes[counter][1] > height) height = allowableSizes[counter][1];
+        }
+    }
+    if (height == 0 || width == 0) return; // Since the element has no size, there is no point in displaying it
+
+    var divId = GetUniqueAdDivTagId();
+    var html = GetAdvertisementHtml(divId, width, height, headerText, mainDivClass);
+
+    if (insertionMode == 'before')
+        elementSet.before(html);
+    else
+        elementSet.after(html);
+
+    googletag.cmd.push(function () {
+        var slot1 = googletag.defineSlot('/36824843/' + adName, allowableSizes, divId).addService(googletag.pubads());
+        googletag.enableServices();
+        googletag.display(divId);
+        setInterval(function () { googletag.pubads().refresh([slot1]); }, 3600000);
+    });
+}
+
+// Creates the appropriate div tags which will contain the ad
+function GetAdvertisementHtml(divId, width, height, headerText, mainDivClass) {
+    var html = '<div class="advertisement';
+    if (mainDivClass != '') html += ' ' + mainDivClass;
+    html += '">';
+
+    // Adding text to the ad div tag if desired
+    if (headerText != '') html += headerText;
+
+    // Adding the main DoubleClick div tag with unique name and size information
+    html += '<div id="' + divId + '" style="width:' + width + 'px; height: ' + height + 'px;">';
+
+    // Closing all open tags
+    html += '</div>'
+    html += '</div>';
+
+    return html;
+}
+
+// This method provides a unique ID for an ad div tag
+function GetUniqueAdDivTagId() {
+    var uniqueId = Math.random() * Math.pow(10, 17) + Math.random() * Math.pow(10, 17) + Math.random() * Math.pow(10, 17) + Math.random() * Math.pow(10, 17);
+    var divId = 'div-gpt-ad-' + uniqueId + '-0';
+    return divId;
+}

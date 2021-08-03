@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <link rel="stylesheet" href="contact-us.css"/>
+      <script src= "contact-us.js"></script>
+      
+
+
+    </head>
+    <body>
+
+      <div>
+        <form   style = "margin-left: auto; margin-right: auto;" onsubmit="" target="_blank" method="post" name="register" id="register">
+            <h1>Contact Us</h1>
+  
+            <input type="text" id="fname" name="fname" placeholder="Your name please" style="zoom: 1.3; margin-top:10px; margin-bottom: 10px;">
+
+                <p id="myname"></p>
+                <p class="for-bold">Select your gender <small>(required)</small></p>
+                <input type="radio" name="gender" id="gender1" value="male" >
+                <label>Male</label><br>
+                <input style="margin-bottom: 15px;" type="radio" name="gender" id="gender2" value="female"  >
+                <label >Female</label><br>
+                <p id="mygender"></p>
+                <label>Choose your country</label><br>
+                <select id="country" name="country" >
+            
+                    <option value="ng">Nigeria</option>
+                    <option value="sz">South Africa</option>
+                    <option value="gh">Ghana</option>
+                    <option value="us">United States of America</option>
+                    <option value="ot">Other</option>
+                </select><br><br>
+              <h3>Enter your complaints or questions</h3>
+            <textarea name="contact" style="width: 600px;height:200px; margin-bottom: 15px;" id="text"></textarea><br>
+            <button type="click" onclick = "validateForm(); radio(); textArea(); allDone()">Submit</button><br>
+            <h3>My other works:</h3>
+            <a href="index.html" target="_blank">Click here to go to the to-do list</a><br>
+            <a href="js-validation.html" target="_blank">Click here to go to the main form</a><br>
+           
+        </form>
+
+        
+      </div>
+    </body>
+    <script>
+     
+    </script>
+    
+
+</html>            

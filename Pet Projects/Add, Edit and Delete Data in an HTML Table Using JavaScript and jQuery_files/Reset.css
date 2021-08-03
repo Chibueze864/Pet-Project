@@ -1,0 +1,12 @@
+﻿*
+{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.clearfix /* Div tag at the bottom of content to make sure styles are cleared properly */
+{
+    clear: both;
+}

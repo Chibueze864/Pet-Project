@@ -1,0 +1,40 @@
+const form = document.querySelector('#addToDo');
+const input = document.querySelector('#my-input');
+const todolist = document.querySelector('#to-do-list');
+const button = document.querySelector("#submit");
+let count = 0;
+let counting = document.querySelector("#count");
+let real_count = document.querySelector("#actual");
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const newToDo = document.createElement('li');
+  const newToDoName = document.createElement('span');
+  const removeBtn = document.createElement('button');
+  const completeBtn = document.createElement('button');
+  completeBtn.style = "width: small";
+  const needBreak = document.createElement("br");
+  newToDoName.innerText = input.value;
+  removeBtn.innerText = 'Click to Remove';
+  completeBtn.innerText = 'Click if Completed';
+  completeBtn.style = "font-size: 10px; width: 70px";
+  removeBtn.style = "font-size: 10px; width: 70px;";
+  newToDo.appendChild(newToDoName);
+  newToDo.appendChild(needBreak);
+  newToDo.appendChild( completeBtn );
+  newToDo.appendChild(removeBtn);
+  input.value = '';
+  todolist.appendChild(newToDo);
+  newToDo.style = "display: flex; justify-content: center; margin-top: 200px; margin-bottom: -150px; "
+  count++;
+  real_count.innerHTML = count;
+  completeBtn.addEventListener("click", function(e) {
+    newToDo.innerHTML = newToDoName.innerText.strike();
+    newToDo.appendChild(needBreak);
+    newToDo.appendChild(removeBtn);
+  })
+
+  removeBtn.addEventListener("click", function(e) {
+    e.target.parentElement.remove();
+  })
+})
