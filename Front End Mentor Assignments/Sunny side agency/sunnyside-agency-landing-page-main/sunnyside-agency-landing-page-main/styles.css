@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital@1&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+body{
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  width: 100%;
+  opacity: 3;
+  font-family: "Barlow" ,"Fraunces";
+}
+#div1{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position:relative;
+}
+
+#div1 #orange #orange-pic {
+  max-width: 100%;
+  height: 80%;
+  object-fit: contain;
+  display: block;
+}
+ .orange-text{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 18px;
+}
+
+.orange-text a,button {
+  left: calc(320%);
+  position:relative;
+  justify-content: space-evenly;
+}
+
+.orange-text a{
+  /* left: 70%; */
+  /* padding-left: 0.5rem; */
+  padding-right: 0.5rem;
+  text-decoration: none;
+  color: white;
+}
+.orange-text button{
+  /* left: 70rem; */
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#div1 #statements{
+   display: grid;
+  padding: 0;
+  margin: 0;
+  grid-template-columns: repeat(2,1fr); 
+  
+}
+#div1 #statements span img{
+  display: block; 
+  width: 100%;
+  /* min-width: 25%; */
+  height: 100%;
+  object-fit: contain;
+ 
+}
+#div1 #statements .assurance{
+ max-width: 100%;
+ height: auto; 
+ background-color: rgba(250,250,250);
+ text-align: center;
+ padding-top: calc(40% - 10rem);
+
+}
+#div1 #statements .assurance strong{
+  font-size: 2.5rem;
+  bottom: 10px;
+  font-family: "Fraunces";
+  font-weight: bold;
+}
+#div1 #statements .assurance  span{
+  font-family: "Fraunces";
+  font-weight: bold;
+  cursor: pointer;
+}
+#div1 #statements .assurance  #yellow:hover{
+  border-bottom:7px solid yellow; 
+  border-radius: 4px;
+}
+#div1 #statements .assurance #red:hover{
+  border-bottom: 7px solid red; 
+  border-radius: 4px;
+
+}
+#div2{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 55%;
+  position:relative;
+}
+
+#div2 #services div {
+    display: grid;
+    float: left;
+    width: 50%;
+    position: relative;
+}
+#div2 #services img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  text-align: center;
+  
+}
+#div2 #services #graphic,#photo{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% - 15rem);
+  left: 1rem;
+  text-align: center;
+}
+#photo strong,#graphic strong{
+  font-family: "Fraunces";
+}  
+
+#div2 #testimonials {
+   height: 500%;
+  width: auto;
+  background-color: rgba(250,250,250);
+ 
+}
+#div2 #testimonials p{
+  margin-top: 10%;
+  margin-bottom: 15px;
+  margin-left: 50%;
+  padding-bottom: 2rem;
+}
+#div2 #testimonials div{
+  float: left;
+  width: 33.33%;
+  padding: 7px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+#div2 #testimonials div img{
+  width: 20%;
+  height:auto;
+  object-fit: contain;
+  border-radius: 50%; 
+}
+#div2 #testimonials div span{
+  font-family: "Fraunces";
+  font-weight: bold;
+}
+#div2 #gallery div{
+  float: left;
+  width: 25%;
+}
+#div2 #gallery div img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  bottom: 3rem;
+}
+#footer{
+  margin: 0;
+  min-height: 200%;
+  width: auto;
+  background-color: aquamarine;
+  text-align: center;
+  
+  /* margin-bottom: 2rem; */
+}
+#footer p{
+  top: 10rem;
+  padding-bottom: 3rem;
+  font-family: "Fraunces";
+}
+#footer span{
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 3rem;
+  cursor: pointer;
+}
+#footer img{
+  margin-top: 2rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+#footer .attribution{
+  margin-top: 3rem;
+}
+
+@media only screen and (max-width : 600px) {
+ 
+  *{
+    min-width: 100%;
+   
+    font-size: 100%;
+  }
+  div{
+    min-height: 100%;
+  }
+  #div1 #statements {
+     display: flex;
+     flex-direction: column;
+  }
+  #div1 #statements .assurance{
+    background-color: rgba(250,250,250);
+  }
+  #testimonials div img{
+    max-width: 40%;
+    height: auto;
+  }
+  #footer{
+    margin-top: 0;
+    min-height: 200%;
+    width: auto;
+    background-color: aquamarine;
+    text-align: center;
+    /* margin-bottom: 2rem; */
+  }
+    #gallery img{
+      display: block;
+    }
+    #footer p{
+      
+      margin-top: 3rem;
+    }
+    #footer span{
+      margin-top: 3rem;
+    }
+    #footer span{
+      padding-left: 3px;
+      padding-right: 3px;
+      padding-bottom: 3rem;
+    }
+    #footer img{
+      all: initial;
+      margin-top: 2rem;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem;
+    }
+    #footer .attribution{
+      margin-top: 3rem;
+    }
+    
+}
+   
